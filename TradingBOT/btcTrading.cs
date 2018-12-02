@@ -13,6 +13,8 @@ using System.Configuration;
 using TradingBOT.Class.Objects;
 using TradingBOT.Class;
 using System.Timers;
+using Newtonsoft.Json;
+using TradingBOT.Class.Objects.CryptoWatch;
 
 namespace TradingBOT
 {
@@ -22,10 +24,13 @@ namespace TradingBOT
 
         public frmBtcTrading()
         {
-            InitializeComponent();            
+            InitializeComponent();
 
             //Loads current price information for this symbol
-            string response = getTickerResponse("tBTCUSD").Replace("[","").Replace("]","");
+            //string response = getTickerResponse("tBTCUSD").Replace("[","").Replace("]","");
+            string response = getCryptoWatchCandles("3600", "btcusd", "bitfinex");
+
+            OHLCResponse ohlcResponse = JsonConvert.DeserializeObject<OHLCResponse>(response);
 
             Ticker ticker = new Ticker(response);
 
@@ -89,6 +94,32 @@ namespace TradingBOT
                 throw ex;
             }
 
+        }
+
+        public string getCryptoWatchCandles(string timeRange, string symbol, string market)
+        {
+            try
+            {
+                HttpWebRequest request;
+                string cwUrl = ConfigurationManager.AppSettings["cwUrl"];
+
+                string requestURI = $"{cwUrl}/{market}/{symbol}/ohlc?periods={timeRange}";
+                request = (HttpWebRequest)WebRequest.Create(requestURI);
+                request.Method = "GET";
+                request.ContentType = "application/json";
+
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                Stream dataStream = response.GetResponseStream();
+                StreamReader sr = new StreamReader(dataStream);
+
+                return sr.ReadToEnd();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+            }
         }
 
         public void switchStatus(Boolean running)
