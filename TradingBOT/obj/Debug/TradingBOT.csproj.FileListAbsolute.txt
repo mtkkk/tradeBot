@@ -1,0 +1,10 @@
+C:\VSSBASE\Pessoal\TradingBOT\bin\Debug\TradingBOT.exe.config
+C:\VSSBASE\Pessoal\TradingBOT\obj\Debug\TradingBOT.frmBtcTrading.resources
+C:\VSSBASE\Pessoal\TradingBOT\obj\Debug\TradingBOT.home.resources
+C:\VSSBASE\Pessoal\TradingBOT\obj\Debug\TradingBOT.Properties.Resources.resources
+C:\VSSBASE\Pessoal\TradingBOT\obj\Debug\TradingBOT.csproj.GenerateResource.Cache
+C:\VSSBASE\Pessoal\TradingBOT\bin\Debug\TradingBOT.exe
+C:\VSSBASE\Pessoal\TradingBOT\bin\Debug\TradingBOT.pdb
+C:\VSSBASE\Pessoal\TradingBOT\obj\Debug\TradingBOT.exe
+C:\VSSBASE\Pessoal\TradingBOT\obj\Debug\TradingBOT.pdb
+C:\VSSBASE\Pessoal\TradingBOT\bin\Debug\JWT.dll
